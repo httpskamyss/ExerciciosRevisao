@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício de Alteração de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Título, parágrafo e botão originais -->
+        <h1 id="meu-titulo">Título Original</h1>
+        <p id="meu-paragrafo">Este é o parágrafo com o conteúdo inicial da página.</p>
+        <button id="meu-botao" onclick="alterarConteudo()">Clique para alterar</button>
+    </div>
+
+    <script>
+        function alterarConteudo() {
+            // Seleciona os elementos da página pelos IDs
+            const titulo = document.getElementById('meu-titulo');
+            const paragrafo = document.getElementById('meu-paragrafo');
+            const botao = document.getElementById('meu-botao');
+
+            // Altera o texto do título
+            titulo.textContent = "Título Alterado com Sucesso!";
+
+            // Altera o conteúdo do parágrafo
+            paragrafo.textContent = "Agora este parágrafo exibe um novo texto dinamizado pelo JavaScript.";
+
+            // Modifica o texto do próprio botão
+            botao.textContent = "Conteúdo Modificado!";
+            
+            // Opcional: desativa o botão após o clique para evitar múltiplos cliques
+            botao.disabled = true;
+            botao.style.backgroundColor = "#6c757d";
+            botao.style.cursor = "default";
+        }
+    </script>
+
+</body>
+</html>
