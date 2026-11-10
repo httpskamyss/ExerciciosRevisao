@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador Interativo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 4rem;
+            margin: 20px 0;
+            color: #333;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            transition: background 0.2s;
+        }
+        .btn-incrementar {
+            background-color: #28a745;
+        }
+        .btn-incrementar:hover {
+            background-color: #218838;
+        }
+        .btn-decrementar {
+            background-color: #dc3545;
+        }
+        .btn-decrementar:hover {
+            background-color: #c82333;
+        }
+        .btn-zerar {
+            background-color: #6c757d;
+        }
+        .btn-zerar:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Contador</h2>
+        <h1 id="contador">0</h1>
+        <div class="buttons">
+            <button class="btn-decrementar" onclick="alterarValor(-1)">Decrementar</button>
+            <button class="btn-zerar" onclick="zerarValor()">Zerar</button>
+            <button class="btn-incrementar" onclick="alterarValor(1)">Incrementar</button>
+        </div>
+    </div>
+
+    <script>
+        // Variável para armazenar o valor atual do contador
+        let valorAtual = 0;
+
+        // Elemento HTML onde o número é exibido
+        const elementoContador = document.getElementById('contador');
+
+        // Função para incrementar ou decrementar
+        function alterarValor(quantidade) {
+            valorAtual += quantidade;
+            atualizarTela();
+        }
+
+        // Função para voltar para zero
+        function zerarValor() {
+            valorAtual = 0;
+            atualizarTela();
+        }
+
+        // Função para atualizar o texto na página sem recarregar
+        function atualizarTela() {
+            elementoContador.textContent = valorAtual;
+        }
+    </script>
+
+</body>
+</html>
