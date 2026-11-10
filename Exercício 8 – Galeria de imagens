@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        /* Área de visualização principal da imagem */
+        .visualizador {
+            margin-bottom: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+        }
+        .visualizador img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        .legenda {
+            padding: 10px;
+            background-color: #343a40;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        /* Botões de navegação da galeria */
+        .botoes-galeria {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Galeria de Imagens</h2>
+        
+        <!-- Área maior onde a imagem e o nome selecionados aparecem -->
+        <div class="visualizador">
+            <img id="imagemPrincipal" src="https://picsum.photos/id/1015/600/400" alt="Paisagem de Montanha">
+            <div id="legendaImagem" class="legenda">Paisagem de Montanha</div>
+        </div>
+
+        <!-- Botões para alternar as imagens -->
+        <div class="botoes-galeria">
+            <button onclick="trocarImagem('https://picsum.photos/id/1015/600/400', 'Paisagem de Montanha')">Foto 1</button>
+            <button onclick="trocarImagem('https://picsum.photos/id/1041/600/400', 'Praia Paradisíaca')">Foto 2</button>
+            <button onclick="trocarImagem('https://picsum.photos/id/1069/600/400', 'Flore
