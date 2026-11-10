@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-adicionar {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-adicionar:hover {
+            background-color: #218838;
+        }
+        #mensagem-erro {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: center;
+            height: 15px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .item-texto {
+            flex: 1;
+            font-size: 1rem;
+            color: #333;
+            word-break: break-word;
+            margin-right: 10px;
+        }
+        /* Classe aplicada quando o produto for comprado */
+        .comprado .item-texto {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .comprado {
+            background-color: #e9ecef;
+            border-color: #ddd
