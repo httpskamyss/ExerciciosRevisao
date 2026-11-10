@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Contatos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            color: #555;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        input[type="text"], 
+        input[type="tel"], 
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-cadastrar {
+            background-color: #007bff;
+            color: white;
+            margin-top: 5px;
+        }
+        .btn-cadastrar:hover {
+            background-color: #0056b3;
+        }
+        #mensagem-erro {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            text-align: center;
+            height: 15px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .contato-info {
+            flex: 1;
+            font-size: 0.9rem;
+            color: #333;
+            word-break: break-word;
+            margin-right: 10px;
+            line-height: 1.4;
+        }
+        .btn-excluir {
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            width: auto;
+            height: fit-content;
+        }
+        .btn-excluir:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Cadastro de Contatos</h2>
+        
+        <div class="input-group">
+            <label for="nomeInput">Nome:</label>
+            <input type="text" id="nomeInput" placeholder="Digite o nome...">
+        </div>
+
+        <div class="input-group">
+            <label for="telefoneInput">Telefone:</label>
+            <input type="tel" id="telefoneInput" placeholder="Ex: (00) 00000-0000">
+        </div>
+
+        <div class="input-group">
+            <label for="emailInput">E-mail:</label>
+            <input type="email" id="emailInput" placeholder="Ex: email@exemplo.com">
+        </div>
+
+        <button class="btn-cadastrar" onclick="cadastrarContato()">Cadastrar</button>
+
+        <div id="mensagem-erro"></div>
+
+        <!-- Lista onde os contatos serão exibidos -->
+        <ul id="listaContatos"></ul>
+    </div>
+
+    <script>
+        function cadastrarContato() {
+            const inputNome = document.getElementById('nomeInput');
+            const inputTelefone = document.getElementById('telefoneInput');
+            const inputEmail = document.getElementById('emailInput');
+            const listaContatos = document.getElementById('
