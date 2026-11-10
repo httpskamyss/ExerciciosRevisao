@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 480px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-adicionar {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-adicionar:hover {
+            background-color: #0056b3;
+        }
+        #mensagem-erro {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: center;
+            height: 15px;
+        }
+        /* Painel estatístico de tarefas */
+        .painel-estatisticas {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e9ecef;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: bold;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .tarefa-texto {
+            flex: 1;
+            font-size: 1rem;
+            color: #333;
+            word-break: break-word;
+            margin-right: 10px;
+        }
+        /* Estilo visual quando a tarefa está concluída */
+        .concluida .tarefa-texto {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .concluida {
+            background-color: #e2f0d9;
+            border-color: #c3e6cb;
+        }
+        .acoes {
+            display: flex;
+            gap: 5px;
+        }
+        .btn-concluir {
+            background-color: #28a745;
+            color: white;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .btn-concluir:hover {
+            background-color: #218838;
+        }
+        .btn-excluir {
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.85rem;
+            padding: 6px 10px;
+        }
+        .btn-excluir:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Gerenciador de Tarefas</h2>
+        
+        <div class="input-group">
+            <input type="text" id="tarefaInput" placeholder="Digite uma nova tarefa...">
+            <button class="btn-adicionar" onclick="adicionarTarefa()">Adicionar</button>
+        </div>
+
+        <div id="mensagem-erro"></div>
+
+        <!-- Painel com a contagem estatística -->
+        <div class="painel-estatisticas">
+            <span id="totalTarefas">Total: 0</span>
+            <span id="concluidasTarefas">Concluídas: 0</span>
+            <span id="pendentesTarefas">Pendentes: 0</span>
+        </div>
+
+        <!-- Lista onde as tarefas serão inseridas -->
+        <ul id="listaTarefas"></ul>
+    </div>
+
+    <script>
+        // Array para armazenar as tarefas (descrição e status de conclusão)
+        let tarefas = [];
+
+        function adicionarTarefa() {
+            const inputTarefa = document.getElementById('tarefaInput');
+            const divErro = document.getElementById('mensagem-erro');
+
+            const descricao = inputTarefa.value.trim();
+            divErro.textContent = "";
+
+            // Validação: não permitir tarefas vazias
+            if (descricao === "") {
+                divErro.textContent = "Por favor, digite a descrição da tarefa.";
+                inputTarefa.focus();
+                return;
+            }
+
+            // Adiciona a tarefa ao array com status inicial 'concluida = false'
+            tarefas.push({ descricao: descricao, concluida: false });
+
+            // Limpa o campo e foca novamente nele
+            inputTarefa.value = "";
+            inputTarefa.focus();
+
+            atualizarTela();
+        }
+
+        function alternarConclusao(index) {
+            // Inverte o status de conclusão da tarefa selecionada
+            tarefas[index].concluida = !tarefas[index].concluida;
+            atualizarTela();
+        }
+
+        function excluirTarefa(index) {
+            // Remove a tarefa do array pelo índice
+            tarefas.splice(index, 1);
+            atualizarTela();
+        }
+
+        function atualizarTela() {
+            const listaTarefas = document.getElementById('listaTarefas');
+            const lblTotal = document.getElementById('totalTarefas');
+            const lblConcluidas = document.getElementById('concluidasTarefas');
+            const lblPendentes = document.getElementById('pendentesTarefas');
+
+            listaTarefas.innerHTML = "";
+
+            let total = tarefas.length;
+            let concluidas = 0;
+
+            // Percorre o array para renderizar as tarefas na interface
+            tarefas.forEach((tarefa, index) => {
+                if (tarefa.concluida) {
+                    concluidas
