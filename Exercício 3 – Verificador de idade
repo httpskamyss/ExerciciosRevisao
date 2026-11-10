@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Verificador de Idade</h2>
+        
+        <div class="input-group">
+            <label for="idade">Digite sua idade:</label>
+            <input type="number" id="idade" placeholder="Ex: 18" min="0" max="120">
+        </div>
+
+        <button onclick="verificarIdade()">Verificar</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function verificarIdade() {
+            // Captura o valor digitado no campo de input
+            const inputIdade = document.getElementById('idade').value;
+            const divResultado = document.getElementById('resultado');
+
+            // Verifica se o campo está vazio
+            if (inputIdade === "") {
+                divResultado.textContent = "Por favor, preencha o campo com a sua idade.";
+                divResultado.style.color = "#dc3545"; // Vermelho para aviso/erro
+                return;
+            }
+
+            // Converte o valor para número inteiro
+            const idade = parseInt(inputIdade);
+
+            // Valida se é uma idade negativa (opcional, mas uma boa prática)
+            if (idade < 0) {
+                divResultado.textContent = "Por favor, insira uma idade válida.";
+                divResultado.style.color = "#dc3545";
+                return;
+            }
+
+            // Verifica se é maior ou menor de idade (considerando 18 anos)
+            if (idade >= 18) {
+                divResultado.textContent = `Você tem ${idade} anos e é maior de idade.`;
+                divResultado.style.color = "#28a745"; // Verde para sucesso
+            } else {
+                divResultado.textContent = `Você tem ${idade} anos e é menor de idade.`;
+                divResultado.style.color = "#ffc107"; // Amarelo/Laranja para menor
+            }
+        }
+    </script>
+
+</body>
+</html>
